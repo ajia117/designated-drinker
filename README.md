@@ -2,6 +2,26 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## User Stories
+
+1. As a general user on the home page, I want to browse all the drinks in the database so that I can see my options. 
+2. As a general user on the home page, I want to filter for drinks by liquor base so that I can see drinks made with a particular liquor. 
+3. As a general user on the home page, I want to search for drinks by ingredients so that I can pick a drink that I can make at home with what I have. 
+4. As a general user on the home page, I want to search for a drink by name, to see the ingredients of a drink that I like. 
+5. As a user, after finding a drink, view details about that drink in a new “drink details” page so that I can view specific information on that drink. 
+6. As a user, after finding a drink and viewing the drink’s details, add that drink to the plan for the night. It will now show up on the “drink plan” with any other drinks that have been added to the plan. I can then easily view any drinks that I have saved to the plan. 
+7. As a user on the home page, search for and add several drinks to the plan. These drinks’ titles and thumbnails should be visible on the “drink plan” page. From the drink plan page, the details of a particular drink in the plan are viewable, so that a user can quickly view details on drinks added to the plan.
+8. As a user on the drink plan page with drinks in a drink plan, highlight the drinks in my drink plan that are light-liquor based and the drinks that are dark-liquor based so that the user can see what liquors would be mixing light and dark. 
+9. As a user on the drink plan page with drinks in a drink plan, select a drink in my drink plan to indicate that one has been imbibed. The counter next to the drink will increase by 1 and the details page will show a time when each drink was consumed. 
+10. As a user with a drink plan on the drink plan page, view the total number of each drink that have been imbibed so far so that the user can estimate how drunk they are. 
+11. As a user with a drink plan on the drink plan page, view an estimated time of sobriety based on the number of drinks that have been imbibed. This time changes based on when a drink was imbibed, the alcoholic content of the drink, and the preset time-alcohol ratio set by the user. The user can set these parameters with a “preferences” button on the right side. 
+12. As a user on the drink plan page with 2 drinks imbibed, remove the second drink consumed from the counter. This will reduce the time remaining. Should the user accidentally select a drink to be drank, this will allow them to undo the mistake. 
+13. As a user on the drink plan page I want to estimate the best and worst cases for when I would be able to drive. I can shift the quickness and slowness with which I drink all the drinks to match my estimated nightly pacing.  
+14. As a user on the drink plan page, set your estimated alcohol tolerance
+
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -68,3 +88,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
