@@ -25,17 +25,8 @@ const useStyles = makeStyles({
  
 });
 
-function DrinkCard( {idDrink} ) {
+function Render() {
   const classes = useStyles();
-
-  async function getDrink() {
-    await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`)
-      .then(res => res.json)
-      .then((data)=> {
-
-     })
- }
-
   return (
    <div className={classes.root} >
      <Grid container direction="row" justifycontenty="flex-start" alignItems="center" spacing={3}>
@@ -60,7 +51,7 @@ function DrinkCard( {idDrink} ) {
             </Typography>
          </Grid>
          <Grid item container justifyContent="flex-start" alignItems="flex-start">
-            {[ 0, 1, 2, 3, 4, 5, 6, 7 ].map(() =>{
+            {[ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ].map(() =>{
               return (
               <Grid item xs={3}>
                 <img className={classes.imgIng} alt="ingImage" src="./logo192.png" />
@@ -69,7 +60,7 @@ function DrinkCard( {idDrink} ) {
          </Grid>
          <Grid item container direction="column" justifyContent="space-evenly" alignItems="flex-start" spacing={4}>
            <Grid item container justifyContent="flex-start" alignItems="flex-start">
-             {[ 0, 1, 2, 3, 4, 5, 6, 7 ].map(() =>{
+             {[ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ].map(() =>{
                 return (
                 <Grid item xs={3}>
                    <Typography variant="body1" gutterBottom>
@@ -82,7 +73,7 @@ function DrinkCard( {idDrink} ) {
              <Typography variant="h6" gutterBottom>
                Instructions
              </Typography>
-             {[ 0, 1, 2, 3, 4, 5, 6, 7 ].map((index) =>{
+             {[ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ].map((index) =>{
                 return (
                  <Typography variant="body1" gutterBottom>
                  {index}. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -101,7 +92,20 @@ function DrinkCard( {idDrink} ) {
        </Grid>
      </Grid>
     </div>
-  );
+  );  
+}
+
+function DrinkCard( {idDrink} ) {
+
+  async function getDrink() {
+    await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`)
+      .then(res => res.json)
+      .then((data)=> {
+
+     })
+ }
+
+  return Render();
 }
 
 export default DrinkCard; 
