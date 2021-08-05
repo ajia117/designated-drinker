@@ -25,39 +25,19 @@ const useStyles = makeStyles({
  
 });
 
-function getIngredients(drinkObj) {
-  let ingredients = [];
-  let measures = [];
-  let ingredientsList = {};
-  for (const [key, value] of Object.entries(drinkObj)) {
-    if(key.match(/strIngredient/) != null ) {
-      if(value !== null) {
-        //temp storage for ingridient
-        ingredients.push(value)
-      }
-    }
-    if(key.match(/strMeasure/) != null ) { 
-      if(value !== null) {
-        //temp storage for ingridient
-        measures.push(value);
-      }
-    }
-  }
-  ingredients.forEach((element, index) => {
-    ingredientsList[element] = measures[index];
-  });
-  console.log(ingredientsList);
-  return ingredientsList;
-}
-
 function DrinkIngredients ({ingredientList}) {
 
   return (
-    <h2>Hello World</h2>
+    <>
+      {Object.keys(ingredientList).map((ingredient, index) => {
+        return (
+           <Grid item key={index} xs={4}>
+              <img src={`http://www.thecocktaildb.com/images/ingredients/${encodeURI(ingredient)}-Small.png`} alt={ingredient}></img>
+           </Grid>) 
+      })} 
+    </>
   )
 
 }
-
-
 
 export default DrinkIngredients; 

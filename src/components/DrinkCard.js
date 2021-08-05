@@ -12,11 +12,11 @@ const useStyles = makeStyles({
     padding: 100,
   },
   drinkCard: {
-    width: 500,
+    width: 400,
     height: 600
   },
   imgDrink: {
-   width: 500,
+   width: 400,
    height: 600
   },
   imgIng: {
@@ -26,16 +26,16 @@ const useStyles = makeStyles({
  
 });
 
-function getIngridients(drinkObj) {
-  let ingridients = [];
+function getIngredients(drinkObj) {
+  let ingredients = [];
   let measures = [];
-  let ingridientsList = {};
-  console.log(drinkObj);
+  let ingredientsList = {};
+  //console.log(drinkObj);
   for (const [key, value] of Object.entries(drinkObj)) {
     if(key.match(/strIngredient/) != null ) {
       if(value !== null) {
         //temp storage for ingridient
-        ingridients.push(value)
+        ingredients.push(value)
       }
     }
     if(key.match(/strMeasure/) != null ) { 
@@ -45,11 +45,11 @@ function getIngridients(drinkObj) {
       }
     }
   }
-  ingridients.forEach((element, index) => {
-    ingridientsList[element] = measures[index];
+  ingredients.forEach((element, index) => {
+    ingredientsList[element] = measures[index];
   });
-  console.log(ingridientsList);
-  return ingridientsList;
+  //console.log(ingridientsList);
+  return ingredientsList;
 }
 
 function Render({drink, ingredientList}) {
@@ -71,11 +71,14 @@ function Render({drink, ingredientList}) {
            />
          </Card>
        </Grid>
-       <Grid item container direction="column" justifyContent="flex-start" alignItems="flex-start" xs={7} spacing={4}>
-         <Grid item container direction="row" justifyContent="center">
+       <Grid item container direction="column" justifyContent="flex-start" alignItems="flex-start" xs={7} spacing={4}>    
+         <Grid item container direction="row" justifyContent="center"> 
             <Typography variant="h6" >
-               Ingridients
+               Ingredients
             </Typography>
+         </Grid>
+         <Grid item container direction="row" justifyContent="flex-start" spacing={4}> 
+            <DrinkIngredients ingredientList={ingredientList}></DrinkIngredients>
          </Grid>
          <Grid item container direction="column" justifyContent="space-evenly" alignItems="flex-start" spacing={4}>
            <Grid item container direction="row" justifyContent="flex-start" alignItems="flex-start" spacing={1}>
@@ -90,6 +93,7 @@ function Render({drink, ingredientList}) {
            </Grid>
            <Grid item container  direction="column" justifyContent="flex-start" alignItems="flex-start" spacing={2}>
              <Grid item>
+              
                <Typography variant="h6" gutterBottom>
                  Instructions
                </Typography>
@@ -126,10 +130,10 @@ function Render({drink, ingredientList}) {
 }
 function DrinkCard( {idDrink} ) {
   const [drink, setDrink] = useState({})
-  const [ingredientList, setIngridientList] = useState({})
+  const [ingredientList, setIngredientList] = useState({})
   const [loading, setLoading] = useState(true);
 
-  function getDrink() {
+  function getDrinks() {
     fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`)
       .then(res => res.json())
       .then((data)=> {
@@ -137,13 +141,15 @@ function DrinkCard( {idDrink} ) {
         return data.drinks[0];
       })
       .then((dataDrink) => {
-        setIngridientList(getIngridients(dataDrink)); 
+        setIngredientList(getIngredients(dataDrink)); 
         setLoading(false); 
       })
-  }
-  useEffect(() => {
-    getDrink();
-  }, [])
+   }  
+    useEffect(() => {
+        getDrinks();
+   }, [])
+
+
   return ( <>{ loading ? ( <div>loading...</div> ) : <Render drink={drink} ingredientList={ingredientList}/> }</> );
 }
 
