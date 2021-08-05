@@ -51,19 +51,19 @@ function Render({drink}) {
             </Typography>
          </Grid>
          <Grid item container justifyContent="flex-start" alignItems="flex-start">
-            {[ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ].map(() =>{
+            {[ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ].map((item, index) =>{
               return (
-              <Grid item xs={3}>
+              <Grid item key={index} xs={3}>
                 <img className={classes.imgIng} alt="ingImage" src="./logo192.png" />
               </Grid>)
              })}
          </Grid>
          <Grid item container direction="column" justifyContent="space-evenly" alignItems="flex-start" spacing={4}>
            <Grid item container justifyContent="flex-start" alignItems="flex-start">
-             {[ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ].map((item) =>{
+             {[ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ].map((item, index) =>{
                 return (
-                <Grid item xs={3}>
-                   <Typography variant="body1" gutterBottom>
+                <Grid item key={index} xs={3}>
+                   <Typography key={index} variant="body1" gutterBottom>
                       -  Ingredient
                 </Typography>
                 </Grid>)
@@ -78,8 +78,8 @@ function Render({drink}) {
              <Grid item container direction="column" justifyContent="flex-start" alignItems="flex-start" spacing={0}>
                 {drink.strInstructions.slice(0, -1).split('.').map((item, index) => {
                   return (  
-                      <Grid item>
-                       <Typography variant="body1" gutterBottom>
+                      <Grid item key={index}>
+                       <Typography key={index} variant="body1" gutterBottom>
                         {`- ${item}.`}
                       </Typography>
                       </Grid>         
