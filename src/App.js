@@ -5,10 +5,7 @@ import {
   Switch
 } from 'react-router-dom';
 
-import Home from './Navbar/Home.js';
-import Favorites from './Navbar/Favorites.js';
-import Navbar from './Navbar/Navbar.js';
-import DrinkPlan from './Navbar/DrinkPlan.js';
+import DrinkPlan from './DrinkPlan/DrinkPlan'
 import './App.css';
 
 function App() {
@@ -22,6 +19,9 @@ function App() {
           <Switch>
             <Route path='/home'>
               <p>Content goes here</p>
+            </Route>
+            <Route path='/plan'>
+              <DrinkPlan />
             </Route>
             <Redirect to='/home'/>
           </Switch>
