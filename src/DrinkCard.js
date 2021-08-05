@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   },
   imgDrink: {
    width: 500,
-   height: 500
+   height: 600
   },
   imgIng: {
    width: 100,
@@ -25,7 +25,7 @@ const useStyles = makeStyles({
  
 });
 
-function Render() {
+function Render({drink}) {
   const classes = useStyles();
   return (
    <div className={classes.root} >
@@ -34,12 +34,12 @@ function Render() {
          <Card className={classes.drinkCard}>
            <CardContent>
              <Typography gutterBottom variant="h5" component="h2">
-               Drink Title
+               {drink.strDrink}
            </Typography>
            </CardContent>
            <CardMedia
               className={classes.imgDrink}
-              image="./logo512.png"
+              image={drink.strDrinkThumb}
               title="Drink Card"
            />
          </Card>
@@ -60,59 +60,69 @@ function Render() {
          </Grid>
          <Grid item container direction="column" justifyContent="space-evenly" alignItems="flex-start" spacing={4}>
            <Grid item container justifyContent="flex-start" alignItems="flex-start">
-             {[ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ].map(() =>{
+             {[ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ].map((item) =>{
                 return (
                 <Grid item xs={3}>
                    <Typography variant="body1" gutterBottom>
-                      - Lorem ipsum 
+                      -  Ingredient
                 </Typography>
                 </Grid>)
               })}
            </Grid>
-           <Grid item>
-             <Typography variant="h6" gutterBottom>
-               Instructions
-             </Typography>
-             {[ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ].map((index) =>{
-                return (
-                 <Typography variant="body1" gutterBottom>
-                 {index}. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-               </Typography>)
-              })}
+           <Grid item container  direction="column" justifyContent="flex-start" alignItems="flex-start" spacing={2}>
+             <Grid item>
+               <Typography variant="h6" gutterBottom>
+                 Instructions
+               </Typography>
+             </Grid>
+             <Grid item container direction="column" justifyContent="flex-start" alignItems="flex-start" spacing={0}>
+                {drink.strInstructions.slice(0, -1).split('.').map((item, index) => {
+                  return (  
+                      <Grid item>
+                       <Typography variant="body1" gutterBottom>
+                        {`- ${item}.`}
+                      </Typography>
+                      </Grid>         
+                   );  
+                })}
+              </Grid>
            </Grid>
          </Grid>
+         <Grid item container  direction="column" justifyContent="flex-start" alignItems="flex-start" spacing={2}>
          <Grid item>
            <Typography variant="h6" gutterBottom>
              Glass Type
            </Typography>
+         </Grid>
+         <Grid item>
            <Typography variant="body1" gutterBottom>
              Old-Fashioned Glass
            </Typography>
-         </Grid>  
+         </Grid>
+       </Grid>  
        </Grid>
      </Grid>
     </div>
   );  
 }
-
 function DrinkCard( {idDrink} ) {
   const [drink, setDrink] = useState({})
   const [loading, setLoading] = useState(true);
 
-  async function getDrink() {
-    await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`)
-      .then(res => res.json)
+  function getDrink() {
+    fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`)
+      .then(res => res.json())
       .then((data)=> {
-       setDrink(data.drinks);
-       return data.drinks;
+        setDrink(data.drinks[0]);
       })
-      .then(dataDrink => {
-       console.log(dataDrink);
-       setLoading(false);  
-      }); 
-
- }
-  return ( <>{ loading ? ( <div>loading...</div> ) : Render() } </>);
+      .then(() => {
+        setLoading(false); 
+      })
+  }
+  useEffect(() => {
+    getDrink();
+  }, [])
+  return ( <>{ loading ? ( <div>loading...</div> ) : <Render drink={drink}/> }</> );
 }
 
 export default DrinkCard; 
