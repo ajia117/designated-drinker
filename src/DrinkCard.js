@@ -96,6 +96,7 @@ function Render() {
 }
 
 function DrinkCard( {idDrink} ) {
+  const [loading, setLoading] = useState(true);
 
   async function getDrink() {
     await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`)
@@ -104,8 +105,7 @@ function DrinkCard( {idDrink} ) {
 
      })
  }
-
-  return Render();
+  return ( <>{ loading ? ( <div>loading...</div> ) : Render() } </>);
 }
 
 export default DrinkCard; 
