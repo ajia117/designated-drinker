@@ -24,6 +24,7 @@ function App() {
         <div className="content">
           <Switch>
             <Route exact path='/' render={() => <DrinkCard idDrink={'11002'}/>}></Route>
+            <Route path='/drink/:id' children={({match}) => <DrinkCard idDrink={match.params.id}/>} />
             <Route path='/home'>
               <DrinkList />
             </Route>
@@ -36,5 +37,6 @@ function App() {
     </Router>
   );
 }
+
   
 export default App;
