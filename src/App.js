@@ -6,6 +6,7 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
+import DrinkCard from './DrinkCard';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         </header>
         <div className="content">
           <Switch>
+            <Route exact path='/' component={DrinkCard}></Route>
             <Route path='/home'>
               <p>Content goes here</p>
             </Route>
