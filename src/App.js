@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -6,6 +5,8 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
+
+import DrinkList from './DrinkList/DrinkList';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         <div className="content">
           <Switch>
             <Route path='/home'>
-              <p>Content goes here</p>
+              <DrinkList />
             </Route>
             <Redirect to='/home'/>
           </Switch>
