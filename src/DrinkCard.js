@@ -96,14 +96,21 @@ function Render() {
 }
 
 function DrinkCard( {idDrink} ) {
+  const [drink, setDrink] = useState({})
   const [loading, setLoading] = useState(true);
 
   async function getDrink() {
     await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`)
       .then(res => res.json)
       .then((data)=> {
+       setDrink(data.drinks);
+       return data.drinks;
+      })
+      .then(dataDrink => {
+       console.log(dataDrink);
+       setLoading(false);  
+      }); 
 
-     })
  }
   return ( <>{ loading ? ( <div>loading...</div> ) : Render() } </>);
 }
