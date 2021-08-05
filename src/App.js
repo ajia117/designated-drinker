@@ -1,11 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
 import {
   BrowserRouter as Router,
   Redirect,
   Route,
   Switch
 } from 'react-router-dom';
+
+import Home from './Navbar/Home.js';
+import Favorites from './Navbar/Favorites.js';
+import Navbar from './Navbar/Navbar.js';
+import DrinkPlan from './Navbar/DrinkPlan.js';
+import './App.css';
 
 function App() {
   return (
@@ -24,6 +28,7 @@ function App() {
         </div>
       </div>
     </Router>
+    
   );
 }
 
