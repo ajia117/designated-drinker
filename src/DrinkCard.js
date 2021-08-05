@@ -10,9 +10,13 @@ const useStyles = makeStyles({
   root: {
     padding: 100,
   },
+  drinkCard: {
+    width: 500,
+    height: 600
+  },
   imgDrink: {
-   width: 300,
-   height: 600
+   width: 500,
+   height: 500
   },
   imgIng: {
    width: 100,
@@ -35,7 +39,7 @@ function DrinkCard( {idDrink} ) {
   return (
    <div className={classes.root} >
      <Grid container direction="row" justifycontenty="flex-start" alignItems="center" spacing={3}>
-       <Grid item container justifyContent="center" xs={6}>
+       <Grid item container justifyContent="center" xs={5}>
          <Card className={classes.drinkCard}>
            <CardContent>
              <Typography gutterBottom variant="h5" component="h2">
@@ -49,51 +53,41 @@ function DrinkCard( {idDrink} ) {
            />
          </Card>
        </Grid>
-       <Grid item container direction="column" justifyContent="flex-start" alignItems="flex-start" xs={6} spacing={2}>
+       <Grid item container direction="column" justifyContent="flex-start" alignItems="flex-start" xs={7} spacing={4}>
          <Grid item container direction="row" justifyContent="center">
             <Typography variant="h6" >
                Ingridients
             </Typography>
          </Grid>
-         <Grid item container justifyContent="space-evenly" alignItems="center">
-           <Grid item xs={3}>
-             <img className={classes.imgIng} alt="ingImage" src="./logo192.png" />
-           </Grid>
-           <Grid item xs={3}>
-             <img className={classes.imgIng} alt="ingImage" src="./logo192.png" />
-           </Grid>
-           <Grid item xs={3}>
-             <img className={classes.imgIng} alt="ingImage" src="./logo192.png" />
-           </Grid>
-           <Grid item xs={3}>
-             <img className={classes.imgIng} alt="ingImage" src="./logo192.png" />
-           </Grid>
+         <Grid item container justifyContent="flex-start" alignItems="flex-start">
+            {[ 0, 1, 2, 3, 4, 5, 6, 7 ].map(() =>{
+              return (
+              <Grid item xs={3}>
+                <img className={classes.imgIng} alt="ingImage" src="./logo192.png" />
+              </Grid>)
+             })}
          </Grid>
-         <Grid item container direction="column" justifyContent="space-evenly" alignItems="flex-start" spacing={2}>
-           <Grid item>
-             <Typography variant="body1" gutterBottom>
-               - Lorem ipsum 
-             </Typography>
-             <Typography variant="body1" gutterBottom>
-               - Lorem ipsum 
-             </Typography>
-             <Typography variant="body1" gutterBottom>
-               - Lorem ipsum 
-             </Typography>
+         <Grid item container direction="column" justifyContent="space-evenly" alignItems="flex-start" spacing={4}>
+           <Grid item container justifyContent="flex-start" alignItems="flex-start">
+             {[ 0, 1, 2, 3, 4, 5, 6, 7 ].map(() =>{
+                return (
+                <Grid item xs={3}>
+                   <Typography variant="body1" gutterBottom>
+                      - Lorem ipsum 
+                </Typography>
+                </Grid>)
+              })}
            </Grid>
            <Grid item>
              <Typography variant="h6" gutterBottom>
                Instructions
              </Typography>
-             <Typography variant="body1" gutterBottom>
-               1. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-             </Typography>
-             <Typography variant="body1" gutterBottom>
-               2. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-             </Typography>
-             <Typography variant="body1" gutterBottom>
-               3. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-             </Typography>
+             {[ 0, 1, 2, 3, 4, 5, 6, 7 ].map((index) =>{
+                return (
+                 <Typography variant="body1" gutterBottom>
+                 {index}. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+               </Typography>)
+              })}
            </Grid>
          </Grid>
          <Grid item>
