@@ -1,0 +1,14 @@
+ul {
+  list-style-type: none;
+}
+
+.drinks {
+  -webkit-column-count: 4;
+  -moz-column-count: 4;
+  column-count: 4;
+}
+
+img {
+  width: 200px;
+  height: auto;
+}

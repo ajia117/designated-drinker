@@ -1,5 +1,4 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Redirect,
@@ -8,19 +7,28 @@ import {
 } from 'react-router-dom';
 import DrinkCard from './components/DrinkCard';
 
+import Navbar from './Navbar/Navbar.js';
+import Home from './Navbar/Home.js';
+import Favorites from './Navbar/Favorites.js';
+import DrinkPlan from './Navbar/DrinkPlan.js';
+import DrinkList from './DrinkList/DrinkList';
+import './App.css';
+
 function App() {
   return (
     <Router>
       <div className="App">
         <header className="App-header">
-          {/* Navbar goes here */}
+          <Navbar />
         </header>
         <div className="content">
           <Switch>
             <Route exact path='/' render={() => <DrinkCard idDrink={'11002'}/>}></Route>
             <Route path='/home'>
-              <p>Content goes here</p>
+              <DrinkList />
             </Route>
+            <Route path='/Favorites' component={Favorites} />
+            <Route path='/DrinkPlan' component={DrinkPlan} />
             <Redirect to='/home'/>
           </Switch>
         </div>
@@ -28,5 +36,5 @@ function App() {
     </Router>
   );
 }
-
+  
 export default App;
