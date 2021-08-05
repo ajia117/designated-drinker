@@ -5,6 +5,7 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
+import DrinkCard from './components/DrinkCard';
 
 import Navbar from './Navbar/Navbar.js';
 import Home from './Navbar/Home.js';
@@ -22,6 +23,8 @@ function App() {
         </header>
         <div className="content">
           <Switch>
+            <Route exact path='/' render={() => <DrinkCard idDrink={'11002'}/>}></Route>
+            <Route path='/drink/:id' children={({match}) => <DrinkCard idDrink={match.params.id}/>} />
             <Route path='/home'>
               <DrinkList />
             </Route>
@@ -34,5 +37,6 @@ function App() {
     </Router>
   );
 }
+
   
 export default App;
