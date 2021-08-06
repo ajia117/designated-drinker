@@ -27,7 +27,7 @@ function App() {
               <DrinkList />
             </Route>
             <Route path='/Favorites' component={Favorites} />
-            <Route path='/DrinkPlan' component={DrinkPlan} />
+            <Route path='/plan' component={DrinkPlan} />
             <Redirect to='/home'/>
           </Switch>
         </div>
