@@ -9,9 +9,10 @@ import DrinkCard from './DrinkCard/DrinkCard';
 
 import Navbar from './Navbar/Navbar.js';
 import Favorites from './Navbar/Favorites.js';
-import DrinkPlan from './Navbar/DrinkPlan.js';
+import DrinkPlan from './DrinkPlan/DrinkPlan'
 import DrinkList from './DrinkList/DrinkList';
 import './App.css';
+
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path='/home'>
               <DrinkList />
             </Route>
+            
             <Route path='/Favorites' component={Favorites} />
             <Route path='/plan' component={DrinkPlan} />
             <Redirect to='/home'/>
@@ -33,6 +35,7 @@ function App() {
         </div>
       </div>
     </Router>
+    
   );
 }
 
