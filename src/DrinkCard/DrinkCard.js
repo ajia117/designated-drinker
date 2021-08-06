@@ -58,7 +58,7 @@ function Render({addDrink, drink, ingredientList}) {
   
   function handleOnClick (event) {
     console.log("Render + " + addDrink)
-    addDrink('11002');
+    addDrink(drink.idDrink);
   }
 
   return (

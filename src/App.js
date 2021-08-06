@@ -32,12 +32,12 @@ function App() {
         </header>
         <div className="content">
           <Switch>
-            <Route path='/drink/:id' children={({match}) => <DrinkCard addDrink={addDrinkToPlan} idDrink={match.params.id}/>} />
+            <Route path='/drink/:id' children={({match}) => <DrinkCard addDrink={addDrinkToPlan} idDrink={match.params.id} drinkPlan={drinkPlan}/>} />
             <Route path='/home'>
               <DrinkList />
             </Route>
 
-            <Route path='/Favorites' component={Favorites} drinkPlan={drinkPlan}/>
+            <Route path='/Favorites' component={Favorites} />
             <Route path='/plan' component={DrinkPlan} />
             <Redirect to='/home'/>
           </Switch>
