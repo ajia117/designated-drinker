@@ -17,19 +17,24 @@ import {
 
 import styles from './DrinkList.module.css'
 
-const DrinkList = () => {
+const DrinkList = ({search}) => {
 
   const [drinks, setDrinks] = useState([])
 
   useEffect(() => {
-    fetch("https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink")
+    console.log("this is search: ", search)
+    let url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${search}`
+    if(search === "") {
+      url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink`;
+    }
+    fetch(url)
       .then(response => response.json())
       .then(data => {
         console.log(data)
         setDrinks(data.drinks)
       })
 
-  }, [])
+  }, [search])
 
 
   return (
@@ -51,7 +56,8 @@ const DrinkFilter = () => {
 
   let options= [
     'vodka',
-    'tequila'
+    'tequila',
+    'rum'
   ]
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(1);
@@ -106,6 +112,11 @@ const DrinkFilter = () => {
 }
 
 const DrinkGrid = ({drinks}) => {
+  if(drinks === null) {
+    return (
+      <p>No drinks found!</p>
+    );
+  }
   return (
     <div className="drinks">
       <Grid container spacing={2}>
