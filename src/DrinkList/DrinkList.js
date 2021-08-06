@@ -5,10 +5,15 @@ import {
   useEffect,
   useState
 } from 'react';
-
-
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+import { 
+  Paper,
+  Grid,
+  Menu,
+  MenuItem, 
+  List, 
+  ListItem, 
+  ListItemText
+} from '@material-ui/core';
 
 import styles from './DrinkList.module.css'
 
@@ -27,6 +32,80 @@ const DrinkList = () => {
   }, [])
 
 
+  return (
+    <div className="drink-list">
+      <Grid container direction="row" justifyContent="flex-end" className="drink-filter">
+        <Grid item xs></Grid>
+        <Grid item xs></Grid>
+        <Grid item xs></Grid>
+        <Grid item xs>
+          <DrinkFilter />
+        </Grid>
+      </Grid>
+      <DrinkGrid drinks={drinks}/>
+    </div>
+  );
+}
+
+const DrinkFilter = () => {
+
+  let options= [
+    'vodka',
+    'tequila'
+  ]
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(1);
+
+  const handleClickListItem = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuItemClick = (event, index) => {
+    setSelectedIndex(index);
+    setAnchorEl(null);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+
+  return (
+    <div className="drink-filter">
+      <List component="nav" aria-label="Device settings">
+        <ListItem
+          button
+          aria-haspopup="true"
+          aria-controls="lock-menu"
+          aria-label="Filter by liquor base"
+          onClick={handleClickListItem}
+        >
+          <ListItemText primary="Filter by liquor base" secondary={options[selectedIndex]} />
+        </ListItem>
+      </List>
+      <Menu
+        id="lock-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        {options.map((option, index) => (
+          <MenuItem
+            key={option}
+            disabled={index === 0}
+            selected={index === selectedIndex}
+            onClick={(event) => handleMenuItemClick(event, index)}
+          >
+            {option}
+          </MenuItem>
+        ))}
+      </Menu>
+    </div>
+  );
+}
+
+const DrinkGrid = ({drinks}) => {
   return (
     <div className="drinks">
       <Grid container spacing={2}>
