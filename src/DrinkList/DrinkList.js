@@ -28,10 +28,12 @@ const DrinkList = () => {
       <ul>
         {drinks.map(drink => (
           <li key={drink.idDrink}>
-            <img className="row" src={drink.strDrinkThumb} alt={`${drink.strDrink}`}/>
-            <div className="row">
-              {drink.strDrink} | {drink.idDrink}
-            </div>
+            <Link to={`/drink/${drink.idDrink}`}>
+              <img className="row" src={drink.strDrinkThumb} alt={`${drink.strDrink}`}/>
+              <div className="row">
+                {drink.strDrink}
+              </div>
+            </Link>
           </li>
         ))}
       </ul>
