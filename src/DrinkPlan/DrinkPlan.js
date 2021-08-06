@@ -11,7 +11,8 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
-  Switch
+  Switch,
+  Divider
 } from '@material-ui/core';
 
 import DrinkCard from '../DrinkCard/DrinkCard';
@@ -27,6 +28,7 @@ class DrinkPlan extends Component {
       eveningGoals:"",
       startTime:"",
       endTime:"",
+      soberGoal: 0,
       dd: false,
       drinkPlan: drinkPlan
     }
@@ -37,8 +39,8 @@ class DrinkPlan extends Component {
     this.setState({selectLiquor: event.target.value})
   }
 
-  onGenderChange(event) {
-    this.setState({gender: event.target.value})
+  onGenderChange(event, value) {
+    this.setState({gender: value})
   }
 
   toggleDD(event) {
@@ -55,8 +57,8 @@ class DrinkPlan extends Component {
     this.setState({endTime: event.target.value})
   }
 
-  soberGoal(event) {
-    this.setState({soberGoal: event.target.value})
+  changeSoberGoal(event, value) {
+    this.setState({soberGoal: value})
 
   }
 
@@ -149,7 +151,7 @@ class DrinkPlan extends Component {
               step={20}
               valueLabelDisplay="auto"
               value={this.state.soberGoal}
-              onChange={this.soberGoal.bind(this)}
+              onChange={this.changeSoberGoal.bind(this)}
               marks={marks}
             />
             </div>
@@ -196,10 +198,12 @@ class DrinkPlan extends Component {
       return (
         <div>
           {this.state.drinkPlan.map(drink => (
-            <DrinkCard idDrink={drink.idDrink} showAddDrink={false}/>
+            <div>
+              <Divider />
+              <DrinkCard idDrink={drink.idDrink} showAddDrink={false}/>
+            </div>
           ))}
         </div>
-        
       );
     }
 
