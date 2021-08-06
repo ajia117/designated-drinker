@@ -6,6 +6,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import DrinkIngredients from './DrinkCardIngredients';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
   root: {
@@ -52,8 +53,14 @@ function getIngredients(drinkObj) {
   return ingredientsList;
 }
 
-function Render({drink, ingredientList}) {
+function Render({addDrink, drink, ingredientList}) {
   const classes = useStyles();
+  
+  function handleOnClick (event) {
+    console.log("Render + " + addDrink)
+    addDrink(drink.idDrink);
+  }
+
   return (
    <div className={classes.root} >
      <Grid container direction="row" justifycontenty="flex-start" alignItems="center" spacing={3}>
@@ -71,7 +78,12 @@ function Render({drink, ingredientList}) {
            />
          </Card>
        </Grid>
-       <Grid item container direction="column" justifyContent="flex-start" alignItems="flex-start" xs={7} spacing={4}>    
+       <Grid item container direction="column" justifyContent="flex-start" alignItems="flex-start" xs={7} spacing={4}> 
+       <Grid item container direction="row" justifyContent="flex-end"> 
+           <Button variant="outlined" color="secondary" onClick={handleOnClick}>
+             Add Drink
+           </Button>
+         </Grid>   
          <Grid item container direction="row" justifyContent="center"> 
             <Typography variant="h6" >
                Ingredients
@@ -81,19 +93,18 @@ function Render({drink, ingredientList}) {
             <DrinkIngredients ingredientList={ingredientList}></DrinkIngredients>
          </Grid>
          <Grid item container direction="column" justifyContent="space-evenly" alignItems="flex-start" spacing={4}>
-           <Grid item container direction="row" justifyContent="flex-start" alignItems="flex-start" spacing={1}>
+           <Grid item container direction="row" justifyContent="flex-start" alignItems="flex-start" spacing={2}>
              {Object.keys(ingredientList).map((ingredient, index) => {
               return (
-                <Grid item key={index} xs={4}>
+                <Grid item key={index} xs={6}>
                   <Typography key={index} variant="body1" gutterBottom>
-                     {`- ${ingredient} ${ingredientList[ingredient]}`}
+                     {`- ${ingredient} ${ingredientList[ingredient] ? ingredientList[ingredient]: ''}`}
                   </Typography>
                 </Grid>) 
               })} 
            </Grid>
            <Grid item container  direction="column" justifyContent="flex-start" alignItems="flex-start" spacing={2}>
              <Grid item>
-              
                <Typography variant="h6" gutterBottom>
                  Instructions
                </Typography>
@@ -128,7 +139,7 @@ function Render({drink, ingredientList}) {
     </div>
   );  
 }
-function DrinkCard( {idDrink} ) {
+function DrinkCard( {addDrink, idDrink} ) {
   const [drink, setDrink] = useState({})
   const [ingredientList, setIngredientList] = useState({})
   const [loading, setLoading] = useState(true);
@@ -144,13 +155,14 @@ function DrinkCard( {idDrink} ) {
         setIngredientList(getIngredients(dataDrink)); 
         setLoading(false); 
       })
-   }  
+    }  
     useEffect(() => {
         getDrinks();
    }, [])
 
 
-  return ( <>{ loading ? ( <div>loading...</div> ) : <Render drink={drink} ingredientList={ingredientList}/> }</> );
+  return ( <>{ loading ? ( <div>loading...</div> ) : <Render addDrink={addDrink} drink={drink} ingredientList={ingredientList}/> }</> );
+
 }
 
 export default DrinkCard; 
