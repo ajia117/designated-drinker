@@ -2,7 +2,10 @@ import React from 'react';
 // import { MenuRounded } from '@material-ui/icons/esm';
 import { NavLink as Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Search } from '@material-ui/icons/esm';
+import SearchIcon from '@material-ui/icons/Search';
+import {
+  TextField
+} from '@material-ui/core';
 
   
 const Navbar = () => {
@@ -12,22 +15,20 @@ const Navbar = () => {
         {/* <Bars /> */}
   
         <NavMenu>
-          
-          <NavLink to='/Home' activeStyle>
+          <NavLink to='/home' activeStyle>
             Home
           </NavLink>
-          <NavLink to='/Favorites' activeStyle>
-          Favorites
+          <NavLink to='/favorites' activeStyle>
+            Favorites
           </NavLink>
-          
-          <NavLink to='/DrinkPlan' activeStyle>
+          <NavLink to='/plan' activeStyle>
             Drink Plan
           </NavLink>
         </NavMenu>
-        <NavBtn>
-                  <input type="search"  name= "search" placeholder="Enter Drink Name" />
-           <NavBtnLink to='/Search'> <Search /> </NavBtnLink>
-         </NavBtn> 
+        <NavSearch>
+          <NavSearchField id="search" type="search" label="Enter Drink Name" variant="filled" />
+          <NavBtnIcon /> 
+        </NavSearch> 
 
         
       </Nav>
@@ -77,16 +78,16 @@ const NavLink = styled(Link)`
 const NavMenu = styled.div`
   display: flex;
   align-items: center;
-  margin-right: -24px;
+  margin-right: 24px;
   @media screen and (max-width: 768px) {
     display: none;
   }
 `;
   
-const NavBtn = styled.nav`
+const NavSearch = styled.nav`
   display: flex;
   align-items: center;
-  margin-right: 24px;
+  margin-right: 70px;
   /* Third Nav */
   /* justify-content: flex-end;
   width: 100vw; */
@@ -95,7 +96,7 @@ const NavBtn = styled.nav`
   }
 `;
   
-const NavBtnLink = styled(Link)`
+const NavBtnIcon = styled(SearchIcon)`
   border-radius: 10px;
   background: #154fee;
   padding: 10px 22px;
@@ -103,6 +104,11 @@ const NavBtnLink = styled(Link)`
   transition: all 0.2s ease-in-out;
   text-decoration: none;
   }
+`;
+
+const NavSearchField = styled(TextField)`
+  background: white;
+  border-radius: 10px;
 `;
 
 export default Navbar;
