@@ -6,6 +6,10 @@ import {
   useState
 } from 'react';
 
+
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+
 import styles from './DrinkList.module.css'
 
 const DrinkList = () => {
@@ -25,18 +29,20 @@ const DrinkList = () => {
 
   return (
     <div className="drinks">
-      <ul>
+      <Grid container spacing={2}>
         {drinks.map(drink => (
-          <li key={drink.idDrink}>
+          <Grid item xs key={drink.idDrink}>
             <Link to={`/drink/${drink.idDrink}`}>
-              <img className="row" src={drink.strDrinkThumb} alt={`${drink.strDrink}`}/>
-              <div className="row">
-                {drink.strDrink}
-              </div>
+              <Paper elevation={3}>
+                <img className="row" src={drink.strDrinkThumb} alt={`${drink.strDrink}`}/>
+                <div className="row">
+                  {drink.strDrink}
+                </div>
+              </Paper>
             </Link>
-          </li>
+          </Grid>
         ))}
-      </ul>
+      </Grid>
     </div>
   );
 }
