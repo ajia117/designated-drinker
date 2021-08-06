@@ -8,31 +8,35 @@ import {
 } from '@material-ui/core';
 
   
-const Navbar = () => {
+const Navbar = ({onSearch}) => {
   return (
-    <>
-      <Nav>
-        {/* <Bars /> */}
+    <Nav>
+      {/* <Bars /> */}
   
-        <NavMenu>
-          <NavLink to='/home' activeStyle>
-            Home
-          </NavLink>
-          <NavLink to='/favorites' activeStyle>
-            Favorites
-          </NavLink>
-          <NavLink to='/plan' activeStyle>
-            Drink Plan
-          </NavLink>
-        </NavMenu>
-        <NavSearch>
-          <NavSearchField id="search" type="search" label="Enter Drink Name" variant="filled" />
-          <NavBtnIcon /> 
-        </NavSearch> 
+      <NavMenu>
+        <NavLink to='/home' activeStyle>
+          Home
+        </NavLink>
+        <NavLink to='/favorites' activeStyle>
+          Favorites
+        </NavLink>
+        <NavLink to='/plan' activeStyle>
+          Drink Plan
+        </NavLink>
+      </NavMenu>
+      <NavSearch>
+        <NavSearchField 
+          id="search" 
+          type="search" 
+          label="Enter Drink Name" 
+          variant="filled" 
+          size="small"
+          onChange={onSearch} />
+        <NavBtnIcon /> 
+      </NavSearch> 
 
-        
-      </Nav>
-    </>
+      
+    </Nav>
   );
 };
   
