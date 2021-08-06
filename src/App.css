@@ -1,8 +1,12 @@
 .App {
   text-align: center;
   padding: auto;
+  background-color: #e0e0e0
 }
 
 .content {
   padding: 20px;
+}
+.DrinkCard {
+  border-bottom: 1px solid black;
 }

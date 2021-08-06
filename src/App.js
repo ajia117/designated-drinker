@@ -39,13 +39,15 @@ const App = () => {
         </header>
         <div className="content">
           <Switch>
-            <Route path='/drink/:id' children={({match}) => <DrinkCard addDrink={addDrinkToPlan} idDrink={match.params.id} drinkPlan={drinkPlan}/>} />
+            <Route path='/drink/:id' children={({match}) => <DrinkCard addDrink={addDrinkToPlan} idDrink={match.params.id} drinkPlan={drinkPlan} showAddDrink="true"/>} />
             <Route path='/home'>
               <DrinkList search={search}/>
             </Route>
 
             <Route path='/Favorites' component={Favorites} />
-            <Route path='/plan' component={DrinkPlan} />
+            <Route path='/plan'>
+              <DrinkPlan drinkPlan={drinkPlan}/>
+            </Route>
             <Redirect to='/home'/>
           </Switch>
         </div>

@@ -123,7 +123,7 @@ const DrinkGrid = ({drinks}) => {
         {drinks.map(drink => (
           <Grid item xs key={drink.idDrink}>
             <Link to={`/drink/${drink.idDrink}`}>
-              <Paper elevation={3}>
+              <Paper elevation={3} className="drink">
                 <img className="row" src={drink.strDrinkThumb} alt={`${drink.strDrink}`}/>
                 <div className="row">
                   {drink.strDrink}

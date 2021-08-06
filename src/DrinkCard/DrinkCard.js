@@ -53,37 +53,46 @@ function getIngredients(drinkObj) {
   return ingredientsList;
 }
 
-function Render({addDrink, drink, ingredientList}) {
+function Render({addDrink, drink, ingredientList, showAddDrink}) {
   const classes = useStyles();
   
   function handleOnClick (event) {
-    console.log("Render + " + addDrink)
-    addDrink(drink.idDrink);
+    addDrink(drink);
+  }
+
+  const AddDrinkButton = () => {
+    console.log("inside a button", showAddDrink);
+    if(showAddDrink) {
+      return (
+        <Button variant="outlined" color="secondary" onClick={handleOnClick}>
+          Add Drink
+        </Button>
+      );
+    }
+    return (<div></div>);
   }
 
   return (
-   <div className={classes.root} >
-     <Grid container direction="row" justifycontenty="flex-start" alignItems="center" spacing={3}>
-       <Grid item container justifyContent="center" xs={5}>
-         <Card className={classes.drinkCard}>
-           <CardContent>
-             <Typography gutterBottom variant="h5" component="h2">
-               {drink.strDrink}
-           </Typography>
-           </CardContent>
-           <CardMedia
+    <div className={classes.root} >
+      <Grid container direction="row" justifycontenty="flex-start" alignItems="center" spacing={3}>
+        <Grid item container  justifyContent="center" xs={5}>
+          <Card className={classes.drinkCard}>
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="h2">
+                {drink.strDrink}
+              </Typography>
+            </CardContent>
+            <CardMedia
               className={classes.imgDrink}
               image={drink.strDrinkThumb}
               title="Drink Card"
-           />
-         </Card>
-       </Grid>
-       <Grid item container direction="column" justifyContent="flex-start" alignItems="flex-start" xs={7} spacing={4}> 
-       <Grid item container direction="row" justifyContent="flex-end"> 
-           <Button variant="outlined" color="secondary" onClick={handleOnClick}>
-             Add Drink
-           </Button>
-         </Grid>   
+            />
+          </Card>
+        </Grid>
+        <Grid item container direction="column" justifyContent="flex-start" alignItems="flex-start" xs={7} spacing={4}> 
+          <Grid item container direction="row" justifyContent="flex-end"> 
+            <AddDrinkButton />
+          </Grid>   
          <Grid item container direction="row" justifyContent="center"> 
             <Typography variant="h6" >
                Ingredients
@@ -139,7 +148,7 @@ function Render({addDrink, drink, ingredientList}) {
     </div>
   );  
 }
-function DrinkCard( {addDrink, idDrink} ) {
+function DrinkCard( {addDrink, idDrink, showAddDrink} ) {
   const [drink, setDrink] = useState({})
   const [ingredientList, setIngredientList] = useState({})
   const [loading, setLoading] = useState(true);
@@ -161,7 +170,7 @@ function DrinkCard( {addDrink, idDrink} ) {
    }, [])
 
 
-  return ( <>{ loading ? ( <div>loading...</div> ) : <Render addDrink={addDrink} drink={drink} ingredientList={ingredientList}/> }</> );
+  return ( <>{ loading ? ( <div>loading...</div> ) : <Render addDrink={addDrink} drink={drink} ingredientList={ingredientList} showAddDrink={showAddDrink}/> }</> );
 
 }
 

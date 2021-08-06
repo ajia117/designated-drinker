@@ -32,7 +32,7 @@ function DrinkIngredients ({ingredientList}) {
       {Object.keys(ingredientList).map((ingredient, index) => {
         return (
            <Grid item key={index} xs={4}>
-              <img src={`http://www.thecocktaildb.com/images/ingredients/${encodeURI(ingredient)}-Small.png`} alt={ingredient}></img>
+              <img src={`http://www.thecocktaildb.com/images/ingredients/${encodeURI(ingredient)}-Medium.png`} alt={ingredient}></img>
            </Grid>) 
       })} 
     </>
