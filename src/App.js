@@ -5,10 +5,9 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
-import DrinkCard from './components/DrinkCard';
+import DrinkCard from './DrinkCard/DrinkCard';
 
 import Navbar from './Navbar/Navbar.js';
-import Home from './Navbar/Home.js';
 import Favorites from './Navbar/Favorites.js';
 import DrinkPlan from './Navbar/DrinkPlan.js';
 import DrinkList from './DrinkList/DrinkList';
@@ -23,7 +22,6 @@ function App() {
         </header>
         <div className="content">
           <Switch>
-            <Route exact path='/' render={() => <DrinkCard idDrink={'11002'}/>}></Route>
             <Route path='/drink/:id' children={({match}) => <DrinkCard idDrink={match.params.id}/>} />
             <Route path='/home'>
               <DrinkList />
