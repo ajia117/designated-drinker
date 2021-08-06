@@ -3,6 +3,9 @@ import React from 'react';
 import { NavLink as Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Search } from '@material-ui/icons/esm';
+import {
+  TextField
+} from '@material-ui/core';
 
   
 const Navbar = () => {
@@ -12,22 +15,22 @@ const Navbar = () => {
         {/* <Bars /> */}
   
         <NavMenu>
-          
           <NavLink to='/Home' activeStyle>
             Home
           </NavLink>
           <NavLink to='/Favorites' activeStyle>
-          Favorites
+            Favorites
           </NavLink>
-          
           <NavLink to='/DrinkPlan' activeStyle>
             Drink Plan
           </NavLink>
         </NavMenu>
         <NavBtn>
-                  <input type="search"  name= "search" placeholder="Enter Drink Name" />
-           <NavBtnLink to='/Search'> <Search /> </NavBtnLink>
-         </NavBtn> 
+          <NavSearch id="search" type="search" label="Enter Drink Name" variant="filled" />
+          <NavBtnLink to='/Search'> 
+            <Search /> 
+          </NavBtnLink>
+        </NavBtn> 
 
         
       </Nav>
@@ -77,7 +80,7 @@ const NavLink = styled(Link)`
 const NavMenu = styled.div`
   display: flex;
   align-items: center;
-  margin-right: -24px;
+  margin-right: 24px;
   @media screen and (max-width: 768px) {
     display: none;
   }
@@ -86,7 +89,7 @@ const NavMenu = styled.div`
 const NavBtn = styled.nav`
   display: flex;
   align-items: center;
-  margin-right: 24px;
+  margin-right: 70px;
   /* Third Nav */
   /* justify-content: flex-end;
   width: 100vw; */
@@ -103,6 +106,11 @@ const NavBtnLink = styled(Link)`
   transition: all 0.2s ease-in-out;
   text-decoration: none;
   }
+`;
+
+const NavSearch = styled(TextField)`
+  background: white;
+  border-radius: 10px;
 `;
 
 export default Navbar;
