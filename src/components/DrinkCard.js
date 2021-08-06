@@ -81,19 +81,18 @@ function Render({drink, ingredientList}) {
             <DrinkIngredients ingredientList={ingredientList}></DrinkIngredients>
          </Grid>
          <Grid item container direction="column" justifyContent="space-evenly" alignItems="flex-start" spacing={4}>
-           <Grid item container direction="row" justifyContent="flex-start" alignItems="flex-start" spacing={1}>
+           <Grid item container direction="row" justifyContent="flex-start" alignItems="flex-start" spacing={2}>
              {Object.keys(ingredientList).map((ingredient, index) => {
               return (
-                <Grid item key={index} xs={4}>
+                <Grid item key={index} xs={6}>
                   <Typography key={index} variant="body1" gutterBottom>
-                     {`- ${ingredient} ${ingredientList[ingredient]}`}
+                     {`- ${ingredient} ${ingredientList[ingredient] ? ingredientList[ingredient]: ''}`}
                   </Typography>
                 </Grid>) 
               })} 
            </Grid>
            <Grid item container  direction="column" justifyContent="flex-start" alignItems="flex-start" spacing={2}>
              <Grid item>
-              
                <Typography variant="h6" gutterBottom>
                  Instructions
                </Typography>
@@ -144,12 +143,10 @@ function DrinkCard( {idDrink} ) {
         setIngredientList(getIngredients(dataDrink)); 
         setLoading(false); 
       })
-   }  
+    }  
     useEffect(() => {
         getDrinks();
-   }, [])
-
-
+  }, [])
   return ( <>{ loading ? ( <div>loading...</div> ) : <Render drink={drink} ingredientList={ingredientList}/> }</> );
 }
 
